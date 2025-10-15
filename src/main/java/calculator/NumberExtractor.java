@@ -10,10 +10,10 @@ public class NumberExtractor {
         String delimiter = ",|:";
 
         if (inputString.startsWith("//")) {
-            int endIndex = inputString.indexOf('\n');
+            int endIndex = inputString.indexOf("\\n");
             String customDelimiter = inputString.substring(2, endIndex);
             delimiter += "|" + customDelimiter;
-            inputString = inputString.substring(endIndex+1);
+            inputString = inputString.substring(endIndex+2);
         }
 
         return Arrays.stream(inputString.split(delimiter))
