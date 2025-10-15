@@ -18,7 +18,24 @@ public class NumberExtractor {
 
         return Arrays.stream(inputString.split(delimiter))
                 .filter(number -> !number.isEmpty())
-                .map(Integer::parseInt)
+                .map(this::parseToInteger)
                 .collect(Collectors.toList());
     }
+
+    private Integer parseToInteger(String number) {
+        try {
+            Integer parsedNumber = Integer.parseInt(number);
+            validate(parsedNumber);
+            return parsedNumber;
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validate(Integer parsedNumber) {
+        if (parsedNumber < 0) {
+            throw new IllegalArgumentException();
+        }
+    }
+
 }
