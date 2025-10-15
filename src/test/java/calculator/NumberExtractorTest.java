@@ -26,7 +26,7 @@ public class NumberExtractorTest {
 
     @Test
     void 커스텀_구분자가_포함된_문자열로부터_양수_리스트_반환() {
-        List<Integer> numbers = numberExtractor.extract("//;\n1;2,3");
+        List<Integer> numbers = numberExtractor.extract("//;\\n1;2,3");
 
         assertThat(numbers).containsExactly(1,2,3);
     }
