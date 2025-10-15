@@ -37,4 +37,10 @@ public class NumberExtractorTest {
 
         assertThat(numbers).isEmpty();
     }
+
+    @Test
+    void 음수가_포함된_문자열_예외처리_테스트() {
+        assertThatThrownBy(() -> numberExtractor.extract("-1:2,3"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
