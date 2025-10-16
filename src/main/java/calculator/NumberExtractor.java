@@ -6,14 +6,22 @@ import java.util.stream.Collectors;
 
 public class NumberExtractor {
 
-    public List<Integer> extract(String inputString) {
-        String delimiter = ",|:";
+    private static final String DEFAULT_DELIMITER = ",|:|";
+    private static final String CUSTOM_DELIMITER_FRONT = "//";
+    private static final String CUSTOM_DELIMITER_END = "\\n";
+    private static final int FRONT_DELIMITER_LENGTH = CUSTOM_DELIMITER_FRONT.length();
+    private static final int END_DELIMITER_LENGTH = CUSTOM_DELIMITER_END.length();
 
-        if (inputString.startsWith("//")) {
-            int endIndex = inputString.indexOf("\\n");
-            String customDelimiter = inputString.substring(2, endIndex);
-            delimiter += "|" + customDelimiter;
-            inputString = inputString.substring(endIndex+2);
+    private static final int MIN_NUMBER = 0;
+
+    public List<Integer> extract(String inputString) {
+        String delimiter = DEFAULT_DELIMITER;
+
+        if (inputString.startsWith(CUSTOM_DELIMITER_FRONT)) {
+            int endIndex = inputString.indexOf(CUSTOM_DELIMITER_END);
+            String customDelimiter = inputString.substring(FRONT_DELIMITER_LENGTH, endIndex);
+            delimiter += customDelimiter;
+            inputString = inputString.substring(endIndex+END_DELIMITER_LENGTH);
         }
 
         return Arrays.stream(inputString.split(delimiter))
@@ -33,7 +41,7 @@ public class NumberExtractor {
     }
 
     private void validate(Integer parsedNumber) {
-        if (parsedNumber < 0) {
+        if (parsedNumber < MIN_NUMBER) {
             throw new IllegalArgumentException();
         }
     }
