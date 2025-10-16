@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class NumberExtractor {
+public class PositiveNumberExtractor {
 
     private static final String DEFAULT_DELIMITER = ",|:|";
     private static final String CUSTOM_DELIMITER_FRONT = "//";
