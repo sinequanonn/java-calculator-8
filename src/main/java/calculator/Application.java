@@ -10,11 +10,11 @@ public class Application {
         OutputView outputView = new OutputView();
 
         NumberExtractor numberExtractor = new NumberExtractor();
-        Calculator calculation = new Calculator();
+        Calculator calculator = new Calculator();
 
         String inputString = inputView.input();
         List<Integer> numbers = numberExtractor.extract(inputString);
-        Integer sum = calculation.sum(numbers);
+        Integer sum = calculator.sum(numbers);
         outputView.printResult(sum);
     }
 }
