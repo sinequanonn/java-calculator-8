@@ -17,6 +17,14 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 합_결과가_실수인_경우_소숫점까지_모두_출력() {
+        assertSimpleTest(() -> {
+            run("//;\\n1.5");
+            assertThat(output()).contains("결과 : 1.5");
+        });
+    }
+
+    @Test
     void 예외_테스트() {
         assertSimpleTest(() ->
             assertThatThrownBy(() -> runException("-1,2,3"))
