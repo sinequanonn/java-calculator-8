@@ -18,9 +18,10 @@ public class PositiveNumberExtractor {
         String delimiter = DEFAULT_DELIMITER;
 
         if (inputString.startsWith(CUSTOM_DELIMITER_FRONT)) {
-            int endIndex = inputString.indexOf(CUSTOM_DELIMITER_END);
-            String customDelimiter = "|" + inputString.substring(FRONT_DELIMITER_LENGTH, endIndex);
+            String customDelimiter = "|" + getCustomDelimiter(inputString);
             delimiter += customDelimiter;
+
+            int endIndex = inputString.indexOf(CUSTOM_DELIMITER_END);
             inputString = inputString.substring(endIndex+END_DELIMITER_LENGTH);
         }
 
@@ -28,6 +29,20 @@ public class PositiveNumberExtractor {
                 .filter(number -> !number.isEmpty())
                 .map(this::parseToDouble)
                 .collect(Collectors.toList());
+    }
+
+    private String getCustomDelimiter(String inputString) {
+        int endIndex = inputString.indexOf(CUSTOM_DELIMITER_END);
+        if (endIndex == -1) {
+            throw new IllegalArgumentException();
+        }
+
+        String customDelimiter = inputString.substring(FRONT_DELIMITER_LENGTH, endIndex);
+        if (customDelimiter.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+
+        return customDelimiter;
     }
 
     private Double parseToDouble(String number) {
