@@ -4,10 +4,10 @@ import java.util.List;
 
 public class Calculator {
 
-    public Integer sum(List<Integer> numbers) {
+    public Double sum(List<Double> numbers) {
 
         return numbers.stream()
-                .mapToInt(Integer::intValue)
+                .mapToDouble(Double::doubleValue)
                 .sum();
     }
 }

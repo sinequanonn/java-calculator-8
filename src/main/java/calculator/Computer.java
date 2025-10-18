@@ -18,8 +18,8 @@ public class Computer {
 
     public void execute() {
         String inputString = inputView.input();
-        List<Integer> numbers = positiveNumberExtractor.extract(inputString);
-        Integer sum = calculator.sum(numbers);
+        List<Double> numbers = positiveNumberExtractor.extract(inputString);
+        Double sum = calculator.sum(numbers);
         outputView.printResult(sum);
     }
 }
