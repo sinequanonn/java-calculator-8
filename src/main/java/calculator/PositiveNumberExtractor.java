@@ -24,11 +24,6 @@ public class PositiveNumberExtractor {
             inputString = inputString.substring(endIndex+END_DELIMITER_LENGTH);
         }
 
-        String[] split = inputString.split(delimiter);
-        for (String input : split) {
-            System.out.println("input = " + input);
-        }
-
         return Arrays.stream(inputString.split(delimiter))
                 .filter(number -> !number.isEmpty())
                 .map(this::parseToDouble)
@@ -37,13 +32,11 @@ public class PositiveNumberExtractor {
 
     private Double parseToDouble(String number) {
         try {
-            System.out.println("number = " + number);
             Double parsedNumber = Double.parseDouble(number);
-            System.out.println("parsedNumber = " + parsedNumber);
             validate(parsedNumber);
             return parsedNumber;
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException("Error");
+            throw new IllegalArgumentException();
         }
     }
 
