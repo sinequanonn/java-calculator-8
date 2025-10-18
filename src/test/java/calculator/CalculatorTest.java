@@ -18,14 +18,14 @@ public class CalculatorTest {
 
     @Test
     void 양수_합_계산_테스트() {
-        List<Integer> numbers = Arrays.asList(1,2,3,4,5);
+        List<Double> numbers = Arrays.asList(1.0,2.0,3.0,4.0,5.0);
 
         Assertions.assertThat(calculator.sum(numbers)).isEqualTo(15);
     }
 
     @Test
     void 양수가_없는_빈_리스트인_경우_0_반환_테스트() {
-        List<Integer> numbers = List.of();
+        List<Double> numbers = List.of();
 
         Assertions.assertThat(calculator.sum(numbers)).isEqualTo(0);
     }
