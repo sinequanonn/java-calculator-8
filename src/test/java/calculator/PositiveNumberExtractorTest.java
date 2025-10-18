@@ -49,4 +49,16 @@ public class PositiveNumberExtractorTest {
 
         assertThat(numbers).containsExactly(1.3, 2.0, 3.0);
     }
+
+    @Test
+    void 기본_구분자와_커스텀_구분자_양수_이외의_문자가_포함된_경우_예외처리() {
+        assertThatThrownBy(() -> positiveNumberExtractor.extract("mkmdf"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 커스텀_구분자가_공백인_경우_예외처리() {
+        assertThatThrownBy(() -> positiveNumberExtractor.extract("//\\n"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
